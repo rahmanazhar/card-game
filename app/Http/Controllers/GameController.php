@@ -21,9 +21,21 @@ class Card
     }
 }
 
+class Player
+{
+
+    public $name;
+    public $cards = array();
+
+    public function __construct($name = '', $cards = '')
+    {
+    }
+}
+
 abstract class CardDeck
 {
     public $deck = array();
+    public $total_deck = 0;
 
     public function shuffle()
     {
@@ -39,6 +51,11 @@ abstract class CardDeck
     public function getRemainingCardCount()
     {
         return count($this->deck);
+    }
+
+    public function getTotalCardCount()
+    {
+        return $this->total_deck;
     }
 
     private function totalRankingHelper($item, $key)
@@ -57,10 +74,10 @@ abstract class CardDeck
 
 class StandardCardDeck extends CardDeck
 {
-    public  $suits = array('s' => "Spades", 'h' => "Hearts", 'c' => "Clubs", 'd' => "Diamonds");
+    public  $suits = array('s' => "S", 'h' => "H", 'c' => "C", 'd' => "D");
     private $suitsCards = array('2', '3', '4', '5', '6', '7', '8', '9', 'x', 'j', 'q', 'k', 'a');
-    private $namedRanks = array("j" => "Jack", "q" => "Queen", "k" => "King", "a" => "Ace");
-    private $suitColor = array("Spades" => Card::COLOR2, "Hearts" => Card::COLOR1, "Clubs" => Card::COLOR2, "Diamonds" => Card::COLOR1);
+    private $namedRanks = array("j" => "J", "q" => "Q", "k" => "K", "a" => "A", "x" => "X");
+    private $suitColor = array("S" => Card::COLOR2, "H" => Card::COLOR1, "C" => Card::COLOR2, "D" => Card::COLOR1);
     private $specialCards = array();
 
     function __construct()
@@ -71,11 +88,12 @@ class StandardCardDeck extends CardDeck
                 $tempcard = new Card();
                 $tempcard->suit = $suit;
                 $tempcard->color = $this->suitColor[$suit];
-                $tempcard->name = (isset($this->namedRanks[$cardnumber]) ? $this->namedRanks[$cardnumber] : $cardnumber) . ' of ' . $suit;
+                $tempcard->name =  $suit . '-' . (isset($this->namedRanks[$cardnumber]) ? $this->namedRanks[$cardnumber] : $cardnumber);
                 $tempcard->symbol = $cardnumber;
                 $tempcard->ranking = $ranking++;
 
                 $this->deck[] = $tempcard;
+                $this->total_deck++;
             }
         }
 
@@ -88,6 +106,7 @@ class StandardCardDeck extends CardDeck
             $tempcard->ranking = 0;
 
             $this->deck[] = $tempcard;
+            $this->total_deck++;
         }
     }
 }
@@ -102,6 +121,7 @@ class GameController
 
     public function post_game(Request $input)
     {
+        $faker = \Faker\Factory::create();
 
         $players = $input->players;
         if (empty($players) || $players < 0) {
@@ -111,26 +131,20 @@ class GameController
         $cardDeck->shuffle();
 
         $playerWithCards = array();
+
         for ($i = 0; $i < $players; $i++) {
-            $playerWithCards[$i] = ['cards' => $this->distribute($players, $cardDeck)];
+            $playerWithCards[$i] = new Player();
+            $playerWithCards[$i]->name = $faker->name();
         }
 
-
-        // dd($playerWithCards[0]['cards'][0]);
-        return view('play_time', compact('playerWithCards'));
-    }
-
-    private function distribute($total_player, $cardDeck)
-    {
-        $player_get_cards = ($cardDeck->getRemainingCardCount() / $total_player);
-        $card_list = array();
-
-        if ($player_get_cards != 0) {
-            for ($i = 0; $i < $player_get_cards; $i++) {
-                $card_list[$i] = $cardDeck->drawCard();
+        for ($i = 0; $i < $cardDeck->getTotalCardCount(); $i++) {
+            foreach ($playerWithCards as $player) {
+                if ($cardDeck->getRemainingCardCount() > 0) {
+                    array_push($player->cards, $cardDeck->drawCard());
+                }
             }
         }
-        // dd($card_list);
-        return $card_list;
+
+        return view('play_time', compact('playerWithCards'));
     }
 }

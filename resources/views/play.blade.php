@@ -18,20 +18,18 @@
 
                     <div class="row mb-3">
                         <div class="col-12">
-                            <div class="row">
-                                <div class="col-3">
-                                    <label>How many players : </label>
-                                </div>
-                                <div class="col-6">
-                                    <input type="number" class="form-control" name="players" value="0" min="0" />
-                                </div>
+
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">How many players :</label>
+                                <input type="number" class="form-control" name="players" value="0" min="0" />
                             </div>
+
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary btn-block">Play Game</button>
+                            <button type="submit" class="btn btn-primary btn-block">Draw Cards</button>
                         </div>
                         <!--col-->
                     </div>
