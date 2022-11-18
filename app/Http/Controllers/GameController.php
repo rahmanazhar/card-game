@@ -116,8 +116,8 @@ class GameController
         }
 
 
-        dd($playerWithCards);
-        // return view('play_time', compact('playerWithCards'));
+        // dd($playerWithCards[0]['cards'][0]);
+        return view('play_time', compact('playerWithCards'));
     }
 
     private function distribute($total_player, $cardDeck)
