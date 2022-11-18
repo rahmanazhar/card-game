@@ -1,0 +1,34 @@
+/**
+ *
+ * You can write your CSS code here, DO NOT touch the default JavaScript file
+ * because it will make it harder for you to update.
+ *
+ */
+
+ .title-h {
+     color: #34395e;
+ }
+
+ .btn-login {
+     color: #064c9c;
+ }
+
+ .card.card-header-2 {
+    border-bottom-color: #f9f9f9;
+    line-height: 30px;
+    -ms-grid-row-align: center;
+    align-self: center;
+    width: 100%;
+    min-height: 70px;
+    padding: 15px 25px;
+    /* display: flex; */
+    align-items: center;
+    background-color: #064c9c;
+ }
+
+ .card.card-login {
+     width: 500px !important;
+     margin: auto;
+     border-radius: 30px;
+ }
+/*# sourceMappingURL=custom.css.map */

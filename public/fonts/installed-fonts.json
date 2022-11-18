@@ -1,0 +1,24 @@
+{
+    "nunito sans": {
+        "normal": "nunito_sans_normal_3fd5bb9eae3359e66d8c74db9a09a154"
+    },
+    "nunito-sans": {
+        "normal": "\/Users\/rahmanazhar\/Documents\/Laravel\/edisystem\/edi-system\/public\/fonts\/nunito_sans_normal_aa2dcb48adb2f2155d666cece1d92fd5",
+        "bold": "nunito_sans_bold_f075ce0f575c5815ba0f1287a531b299",
+        "bold_italic": "\/Users\/rahmanazhar\/Documents\/Laravel\/edisystem\/edi-system\/public\/fonts\/nunito_sans_bold_italic_a1ca2cfa49387cf1470d9f885863351d"
+    },
+    "nunito-sans-600": {
+        "bold": "nunito_sans_600_bold_dd4e1fd90a3ed2e05141198f6ceb54fe"
+    },
+    "nunito-sans-700": {
+        "bold": "nunito_sans_700_bold_f075ce0f575c5815ba0f1287a531b299"
+    },
+    "nunito-sans-800": {
+        "bold_italic": "nunito_sans_800_bold_italic_a1ca2cfa49387cf1470d9f885863351d"
+    },
+    "nunito-sans-latin": {
+        "normal": "\/Users\/rahmanazhar\/Documents\/Laravel\/edisystem\/edi-system\/public\/fonts\/nunito_sans_latin_normal_aa2dcb48adb2f2155d666cece1d92fd5",
+        "bold": "nunito_sans_latin_bold_f075ce0f575c5815ba0f1287a531b299",
+        "bold_italic": "\/Users\/rahmanazhar\/Documents\/Laravel\/edisystem\/edi-system\/public\/fonts\/nunito_sans_latin_bold_italic_a1ca2cfa49387cf1470d9f885863351d"
+    }
+}
